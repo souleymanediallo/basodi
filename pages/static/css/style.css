@@ -1,0 +1,10 @@
+.top-menu {
+    background-color: #000000!important;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 13px 0px;
+    cursor: pointer;
+}

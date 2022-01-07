@@ -1,0 +1,16 @@
+CITY_CHOICES = [
+    ('Dakar', 'Dakar'),
+    ('Diourbel', 'Diourbel'),
+    ('Fatick', 'Fatick'),
+    ('Kaffrine', 'Kaffrine'),
+    ('Kaolack', 'Kaolack'),
+    ('Kedougou', 'Kédougou'),
+    ('Kolda', 'Kolda'),
+    ('Louga', 'Louga'),
+    ('Matam', 'Matam'),
+    ('Saint-Louis', 'Saint-Louis'),
+    ('Sedhiou', 'Sédhiou'),
+    ('Tambacounda', 'Tambacounda'),
+    ('Thies', 'Thiès'),
+    ('Ziguinchor', 'Ziguinchor'),
+]
