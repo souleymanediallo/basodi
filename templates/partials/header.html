@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg fixed-top shadow top-menu">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <a class="navbar-brand py-1 font-weight-bold text-uppercase text-light" href="#">BASODI</span></a>
+                <a class="navbar-brand py-1 font-weight-bold text-uppercase text-light" href="{% url 'home' %}">BASODI</span></a>
                 <form class="form-inline d-none d-sm-flex" action="#" id="search">
                     <div class="input-label-absolute input-label-absolute-left input-reset input-expand ml-lg-2 ml-xl-3">
                         <label class="label-absolute" for="search_search"><i class="fa fa-search"></i><span class="sr-only">Rechercher</span></label>
@@ -30,23 +30,22 @@
                     <li class="nav-item"><a class="nav-link text-light" href="signup.html">Hommes</a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="signup.html">Couples</a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="signup.html">Enfants</a></li>
-
-
-                    <li class="nav-item dropdown ml-lg-3"><a id="userDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="avatar avatar-sm avatar-border-white mr-2" src="" alt="Profile Photo"></a>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown ml-lg-3"><a id="userDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ user.profile.image.url }}" alt="Profile Photo"></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenuLink">
                             <a class="dropdown-item" href="#">Ajouter une Annonce</a>
                             <a class="dropdown-item" href="#">Gérer mes Annonces</a>
                             <a class="dropdown-item" href="#">Messages</a>
-                            <a class="dropdown-item" href="#">Mon Compte</a>
+                            <a class="dropdown-item" href="{% url 'user-profile' user.profile.id %}">Mon Compte</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'logout' %}">
                                 <i class="fas fa-sign-out-alt mr-2 text-muted"></i> Déconnexion</a>
                         </div>
                     </li>
-
-                    <li class="nav-item"><a class="nav-link" href="#"><button type="button" class="btn btn-light btn-sm">Inscription</button></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><button type="button" class="btn btn-light btn-sm">Connexion</button></a></li>
-
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}"><button type="button" class="btn btn-light btn-sm">Inscription</button></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><button type="button" class="btn btn-light btn-sm">Connexion</button></a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
