@@ -33,7 +33,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown ml-lg-3"><a id="userDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ user.profile.image.url }}" alt="Profile Photo"></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Ajouter une Annonce</a>
+                            <a class="dropdown-item" href="{% url 'article-create' %}">Ajouter un Article</a>
                             <a class="dropdown-item" href="#">Gérer mes Annonces</a>
                             <a class="dropdown-item" href="#">Messages</a>
                             <a class="dropdown-item" href="{% url 'user-profile' user.profile.id %}">Mon Compte</a>

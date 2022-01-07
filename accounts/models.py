@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.db.models.signals import post_save
+from django.urls import reverse
+
 from .choices import CITY_CHOICES
 
 import uuid
@@ -38,6 +40,7 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     objects = MyUserManager()
 
@@ -67,6 +70,9 @@ class Profile(models.Model):
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def get_absolute_url(self):
+        return reverse("user-profile", kwargs={"pk": self.pk})
 
 
 def post_save_receiver(sender, instance, created, **kwargs):

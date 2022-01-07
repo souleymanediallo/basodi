@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="my-5">
+    <div class="container">
+        <form class="form-validate" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <!-- item start -->
+                <div class="col-lg-9">
+                    <div class="card- mb-3">
+                        <div class="card-body-">
+                            <div class="form-group">
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Catégorie</div>
+                                        </div>
+                                        <span class="w-50">{{ form.category }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Type d'annonce</div>
+                                        </div>
+                                        <span class="w-50">{{ form.subcategory }}</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+
+                <!-- item start -->
+                <div class="col-lg-9">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="mb-2">Titre de votre annonce</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Description de votre annonce</label>
+                                {{ form.description }}
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="mb-2"><strong>Ajouter une photo</strong></label><br>
+                                {{ form.photo_main }}
+                            </div>
+
+                            <div class="form-group">
+                                <label class="mb-2"><strong>Vous pouvez ajouter 6 photos supplémentaires</strong></label><br />
+                                {{ form.photo_1 }} {{ form.photo_2 }} {{ form.photo_3 }}
+                                {{ form.photo_4 }} {{ form.photo_5 }} {{ form.photo_6 }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb">Ajouter des informations à votre article</label>
+                        <p class="mx-3">{{form.tag}}</p>
+                    </div>
+                </div>
+                <!-- item end -->
+
+                <!-- item start -->
+                {% if form.subcategory != "Accessoire" %}
+                <div class="col-lg-9">
+                    <div class="card- mb-3">
+                        <div class="card-body-">
+                            <div class="form-group">
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Etat</div>
+                                        </div>
+                                        <span class="w-50">{{ form.condition }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Taille</div>
+                                        </div>
+                                        <span class="w-50">{{ form.size }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Couleur</div>
+                                        </div>
+                                        <span class="w-50">{{ form.color }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Prix</div>
+                                        </div>
+                                        <span class="w-50">{{ form.price }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Je suis intéressé(e) par les échanges, si OUI coher la case</div>
+                                        </div>
+                                        <span class="w-25">{{ form.give }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold"><strong>Je donne cet article, si OUI coher la case</strong></div>
+                                        </div>
+                                        <span class="w-25">{{ form.give }}</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+                {% endif %}
+                <!-- item start -->
+                <div class="col-lg-9">
+                    <div class="card-">
+                        <div class="card-body-">
+                            <button class="btn btn-lg btn-block btn-dark" type="submit">Publier votre annonce</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

@@ -20,12 +20,52 @@
     </div>
 </section>
 <!-- new product -->
+<section class="py-6">
+    <div class="container-fluid">
+        <div class="text-center pb-lg-4">
+            <h2 class="mb-5 text-uppercase">Les Nouveaux Articles</h2>
+        </div>
+        <div class="row">
+            <!-- venue item-->
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-3 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
+                <div class="card h-100 border-0 shadow">
+                    <div class="card-img-top overflow-hidden dark-overlay bg-cover" style="background-image: url('{{ article.photo_main.url }}'); min-height: 350px;"><a class="tile-link" href="{{ article.get_absolute_url }}"></a>
+                        <div class="card-img-overlay-bottom z-index-20">
+                            <h4 class="text-white text-shadow">{{ article.name }}</h4>
+                            <p class="mb-2 text-xs"><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-gray-300">                    </i>
+                            </p>
+                        </div>
+                        <div class="card-img-overlay-top d-flex justify-content-between align-items-center">
+                            <div class="badge badge-transparent badge-pill px-3 py-2">{{ article.category }}</div><a class="card-fav-icon position-relative z-index-40" href="javascript: void();">
+                            <svg class="svg-icon text-white">
+                                <use xlink:href="#heart-1"> </use>
+                            </svg></a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-sm text-muted text-uppercase mb-1">{{ article.price }}FCFA</p>
+                            <p class="text-sm text-muted text-uppercase mb-1"> L/34</p>
+                        </div>
+                        <div class="profile-img mb-0">
+                            <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ article.author.profile.image.url }}">
+                            <small>{{ article.author.firstname }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- products -->
 
 
 
 <!-- Our picks section-->
 <section class="pt-4 pb-6">
-    <div class="container">
+    <div class="container text-center">
         <div class="pb-lg-4">
             <p class="font-weight-bold">Vente de vêtements en ligne</p>
             <h2 class="mb-5">Découvrir vos avantages</h2>
@@ -33,8 +73,8 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="px-0 pr-lg-3">
-                    <div class="icon-rounded mb-3 bg-success-light">
-                        <svg class="svg-icon w-2rem h-2rem text-success">
+                    <div class="icon-rounded mb-3 bg-dark-light">
+                        <svg class="svg-icon w-2rem h-2rem text-dark">
                             <use xlink:href="#love-pin-1"> </use>
                         </svg>
                     </div>
@@ -44,8 +84,8 @@
             </div>
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="px-0 pr-lg-3">
-                    <div class="icon-rounded mb-3 bg-success-light">
-                        <svg class="svg-icon w-2rem h-2rem text-success">
+                    <div class="icon-rounded mb-3 bg-dark-light">
+                        <svg class="svg-icon w-2rem h-2rem text-dark">
                             <use xlink:href="#pay-by-card-1"> </use>
                         </svg>
                     </div>
@@ -55,8 +95,8 @@
             </div>
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="px-0 pr-lg-3">
-                    <div class="icon-rounded mb-3 bg-success-light">
-                        <svg class="svg-icon w-2rem h-2rem text-success">
+                    <div class="icon-rounded mb-3 bg-dark-light">
+                        <svg class="svg-icon w-2rem h-2rem text-dark">
                             <use xlink:href="#food-1"> </use>
                         </svg>
                     </div>
@@ -66,8 +106,8 @@
             </div>
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="px-0 pr-lg-3">
-                    <div class="icon-rounded mb-3 bg-success-light">
-                        <svg class="svg-icon w-2rem h-2rem text-success">
+                    <div class="icon-rounded mb-3 bg-dark-light">
+                        <svg class="svg-icon w-2rem h-2rem text-dark">
                             <use xlink:href="#pay-1"> </use>
                         </svg>
                     </div>
