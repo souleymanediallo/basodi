@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm
 from django.contrib import messages
 from .models import CustomUser, Profile
+from articles.models import Article
 
 
 # Create your views here.
@@ -40,7 +41,11 @@ def login_user(request):
 
 def user_profile(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
-    context = {"profile": profile}
+
+    articles = Article.objects.filter(author=profile.user)
+
+    context = {"profile": profile, "articles": articles}
+
     return render(request, "accounts/user_profile.html", context)
 
 

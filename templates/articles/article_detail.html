@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<section class="py-6">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- start slider -->
+                <section class="mx-n4 mx-xl-n5 mb-4 mb-xl-5">
+                    <!-- Slider main container-->
+                    <div class="swiper-container booking-detail-slider">
+                        <!-- Additional required wrapper-->
+                        <div class="swiper-wrapper">
+                            <!-- Slides-->
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Our street"></div>
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Outside"></div>
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Rear entrance"></div>
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Kitchen"></div>
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Bedroom"></div>
+                            <div class="swiper-slide"><img class="img-fluid" src="{{ article.photo_main.url }}" alt="Bedroom"></div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                        <div class="swiper-button-next swiper-button-white"></div>
+                    </div>
+                </section>
+                <!-- end slider -->
+
+                <!-- About Listing-->
+                <div class="text-block">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="h6 mb-3">{{ article.name}}</h2>
+                        <div class="text-center"><a class="btn btn-dark btn-block" href="#"> <i class="far fa-paper-plane mr-2"></i>Envoyer un message</a></div>
+                    </div>
+                    <h2 class="h6 my-3">Desciption</h2>
+                    <p class="text-muted">{{ article.description}}</p>
+                </div>
+
+
+                <!-- Amenities-->
+                <div class="text-block">
+                    <h3 class="mb-4">Services</h3>
+                    <ul class="amenities-list list-inline">
+                        <li class="list-inline-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-circle bg-success mr-2"><i class="fa fa-check"></i></div><span>Apéritif gratuit</span>
+                            </div>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-circle bg-success mr-2"><i class="fa fa-check"></i></div><span>Non fumeur</span>
+                            </div>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-circle bg-success mr-2"><i class="fa fa-check"></i></div><span>Parking gratuit</span>
+                            </div>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-circle bg-success mr-2"><i class="fa fa-check"></i></div><span>WiFi</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Article similaire -->
+
+                <!-- end article -->
+            </div>
+            <div class="col-lg-4">
+                <div class="pl-xl-4">
+                    <!-- Opening Hours      -->
+                    <div class="card border-0 shadow mb-5">
+                        <div class="card-header bg-gray-100 py-4 border-0">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+
+                                    <h4 class="mb-0">Fiche Produit</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table text-sm mb-0">
+                                <tr>
+                                    <th class="pl-0 border-0">Prix</th>
+                                    <td class="pr-0 text-right border-0">{{article.price}} FCFA</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0">Taille</th>
+                                    <td class="pr-0 text-right">{{article.size}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0">Couleur</th>
+                                    <td class="pr-0 text-right">{{ article.color }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0">Etat</th>
+                                    <td class="pr-0 text-right">{{ article.condition }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0">Emplacement</th>
+                                    <td class="pr-0 text-right">{{ article.author.profile.location}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0">Date de publication</th>
+                                    <td class="pr-0 text-right">{{ article.created|date}}</td>
+                                </tr>
+                                {% if article.author.profile.phone %}
+                                <tr>
+                                    <th class="pl-0">Téléphone</th>
+                                    <td class="pr-0 text-right">{{ article.author.profile.phone }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <th class="pl-0"><a href="{% url 'user-profile' article.author.profile.id %}">{{ article.author.firstname }}</a></th>
+                                    <td class="pr-0 text-right"><img src="{{ article.author.profile.image.url }}" height="30" width="30"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Contact-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

@@ -141,5 +141,17 @@ class Article(models.Model):
         self.slug = slugify(self.name)
         super(Article, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("article-detail", kwargs={"pk": self.pk})
+
+    def get_absolute_url_user(self):
+        return reverse("article-user", kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse("article-delete", kwargs={"pk": self.pk})
+
+    def get_update_url(self):
+        return reverse("article-update", kwargs={"pk": self.pk})
+
     def __str__(self):
         return self.name

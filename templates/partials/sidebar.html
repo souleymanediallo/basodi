@@ -1,0 +1,11 @@
+{% load custom_tags %}
+
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active bg-dark border-dark" aria-current="true">
+        Catégorie
+    </a>
+    {% subcategories as subcategories %}
+        {% for subcat in subcategories %}
+        <a href="{% url 'subcategory-detail' pk=subcat.pk slug=subcat.slug %}" class="list-group-item list-group-item-action">{{ subcat.name }}</a>
+        {% endfor %}
+</div>
