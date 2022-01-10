@@ -110,7 +110,8 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name="articles")
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name="articles",
+                                 default="a68d46c1-4f68-4646-ba66-0081204e17a0")
     subcategory = models.ForeignKey(SubCategory, related_name="articles",
                                     on_delete=models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=200)
@@ -118,8 +119,10 @@ class Article(models.Model):
     price = models.PositiveIntegerField()
     condition = models.ForeignKey(Condition, on_delete=models.DO_NOTHING, related_name="articles")
     tag = models.ManyToManyField(Tag, related_name="articles", blank=True)
-    color = models.ForeignKey(Color, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
-    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
+    color = models.ForeignKey(Color, on_delete=models.DO_NOTHING, related_name="articles", blank=True,
+                              default='18fc9abc-2459-4551-b34a-0ae89181417b')
+    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True,
+                             default='f816d8bb-3c3c-457f-b74c-ec4fa68aeb81')
     photo_main = models.ImageField(upload_to='photos/%Y/%m/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)

@@ -21,7 +21,12 @@ class ArticleDetailView(DetailView):
     context_object_name = "article"
     template_name = "articles/article_detail.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['article_similar'] = Article.objects.all()
+        return context
 
+   
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Article
     form_class = ArticleForm
