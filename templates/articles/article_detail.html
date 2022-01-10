@@ -34,12 +34,22 @@
                 <div class="text-block">
                     <div class="d-flex justify-content-between">
                         <h2 class="h6 mb-3">{{ article.name}}</h2>
-                        <div class="text-center"><a class="btn btn-dark btn-block" href="#"> <i class="far fa-paper-plane mr-2"></i>Envoyer un message</a></div>
+                        <div class="text-center">
+                            {% if not user.is_authenticated %}
+                            <a href="{% url 'login' %}" class="btn btn-dark">
+                                Envoyer un message
+                            </a>
+                            {% endif %}
+                            {% if request.user.profile.id != profile.id %}
+                            <a href="{% url 'conversation-create' article.author.profile.pk %}" class="btn btn-dark">
+                                Envoyer un message
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                     <h2 class="h6 my-3">Desciption</h2>
                     <p class="text-muted">{{ article.description}}</p>
                 </div>
-
 
                 <!-- Amenities-->
                 <div class="text-block">
@@ -69,7 +79,7 @@
                                     </div>
                                     <div class="profile-img mb-0">
                                         <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ article.author.profile.image.url }}">
-                                        <small>{{ article.author.username }}</small>
+                                        <small>{{ article.author.firstname }}</small>
                                     </div>
                                 </div>
                             </div>

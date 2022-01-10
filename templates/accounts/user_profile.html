@@ -22,12 +22,17 @@
                             </div>
                         </div>
                         <hr>
+
+                        {% if request.user.profile.id != profile.id %}
                         <div class="media align-items-center mb-3">
                             <div class="media-body">
-                                <a href="" class="btn btn-dark btn-block">Envoyer un message</a>
+                                <a href="{% url 'conversation-create' profile.pk %}" class="btn btn-dark">
+                                    Envoyer un message
+                                </a>
                             </div>
                         </div>
                         <hr>
+                        {% endif %}
 
                         <div class="media align-items-center mb-3">
                             <div class="icon-rounded icon-rounded-sm bg-success-light mr-2">

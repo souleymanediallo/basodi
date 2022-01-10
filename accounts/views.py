@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm
 from django.contrib import messages
@@ -49,5 +50,6 @@ def user_profile(request, profile_id):
     return render(request, "accounts/user_profile.html", context)
 
 
+@login_required
 def dashboard(request):
     return render(request, "accounts/dashboard.html")
