@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
     'conversations.apps.ConversationsConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,5 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 LOGIN_URL = "login"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

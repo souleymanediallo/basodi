@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
 from .models import CustomUser, Profile
 from articles.models import Article
@@ -53,3 +53,28 @@ def user_profile(request, profile_id):
 @login_required
 def dashboard(request):
     return render(request, "accounts/dashboard.html")
+
+
+# Update Profile user
+@login_required
+def profile_update(request):
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=request.user.profile
+        )
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            username = u_form.cleaned_data.get("username")
+            messages.success(
+                request,
+                f"Votre compte a été mis à jour {username}")
+            return redirect('dashboard')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    context = {"u_form": u_form, "p_form": p_form}
+    return render(request, "accounts/update.html", context)
