@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
     'conversations.apps.ConversationsConfig',
+    'favorite.apps.FavoriteConfig',
+
     'crispy_forms',
 ]
 

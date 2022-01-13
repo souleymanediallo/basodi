@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="showcase-inner" class="py-5 text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1 class="display-4">Mes Produits Favorits</h1>
+                    <p class="lead">App-Asso-Immo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <!-- end Breadcrumb -->
+
+    {% include 'partials/alerts.html' %}
+
+    <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <h5 class="my-4">Etes-vous sûr de vouloir supprimer ce produit dans vos favoris ?</h5>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    <a href="{% url 'my-favorite' %}" class="btn btn-warning">Annuler</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

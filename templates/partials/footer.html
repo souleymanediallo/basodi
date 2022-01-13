@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-3 mb-5 mb-lg-0">
                     <div class="font-weight-bold text-uppercase mb-3">BASODI</div>
-                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt.</p>
+                    <p>Offrir une seconde vie à vos vêtements, chaussures et accessoires africains.</p>
                     <ul class="list-inline">
                         <li class="list-inline-item"><a class="text-light text-hover-success" href="#" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a class="text-light text-hover-success" href="#" target="_blank" title="facebook"><i class="fab fa-facebook"></i></a></li>
@@ -16,29 +16,33 @@
                         <li class="list-inline-item"><a class="text-light text-hover-success" href="#" target="_blank" title="vimeo"><i class="fab fa-vimeo"></i></a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                     <h6 class="text-uppercase mb-3">A propos</h6>
                     <ul class="list-unstyled">
-                        <li><a class="text-light" href="#">Espace presse</a></li>
-                        <li><a class="text-light" href="#">Investisseurs</a></li>
-                        <li><a class="text-light" href="#">Sécurité</a></li>
-                        <li><a class="text-light" href="#">Blog</a></li>
-                        <li><a class="text-light" href="#">Aide</a></li>
-                        <li><a class="text-light" href="#">Mentions légales</a></li>
+                        <li><a class="text-light" href="{% url 'societe' %}">Qui sommes-nous ?</a></li>
+                        <li><a class="text-light" href="{% url 'valeurs' %}">Nos Valeurs</a></li>
+                        <li><a class="text-light" href="{% url 'engagements' %}">Nos engagements</a></li>
+
+
+
+
+                        <li><a class="text-light" href="{% url 'conseils' %}">Conseils Pour Bien Vendre</a></li>
+
+
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                     <h6 class="text-uppercase mb-3">Plus d'option</h6>
                     <ul class="list-unstyled">
-                        <li><a class="text-light" href="#">Suivi de commande</a></li>
-                        <li><a class="text-light" href="#">Devenez coursier</a></li>
-                        <li><a class="text-light" href="#">Voir toutes les villes</a></li>
-                        <li><a class="text-light" href="#">Aide</a></li>
+                        <li><a class="text-light" href="{% url 'utilisation' %}">Utilisation de la Plateforme</a></li>
+                        <li><a class="text-light" href="{% url 'mentions' %}">Mentions légales</a></li>
+                        <li><a class="text-light" href="{% url 'cgu' %}">CGU</a></li>
+                        <li><a class="text-light" href="{% url 'faq' %}">FAQ</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
-                    <h6 class="text-uppercase mb-3">Newsletters</h6>
-                    <p class="mb-3"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
+                <div class="col-lg-3">
+                    <h6 class="text-uppercase mb-3">Newsletter</h6>
+                    <p class="mb-3"> Recevoir les bons plans, les nouveautés et bonnes affaires.</p>
                     <form action="#" id="newsletter-form">
                         <div class="input-group mb-3">
                             <input class="form-control bg-transparent border-success border-right-0" type="email" placeholder="Inscription" aria-label="Votre email">
@@ -56,14 +60,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-left">
-                    <p class="text-sm mb-md-0">&copy; 2021, BASODI</p>
+                    <p class="text-sm mb-md-0">&copy; 2022, BASODI</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
-                        <li class="list-inline-item"><img class="w-2rem" src="{% static "images/visa.svg" %}" alt="..."></li>
-                        <li class="list-inline-item"><img class="w-2rem" src="{% static "images/mastercard.svg" %}" alt="..."></li>
-                        <li class="list-inline-item"><img class="w-2rem" src="{% static "images/paypal.svg" %}" alt="..."></li>
-                        <li class="list-inline-item"><img class="w-2rem" src="{% static "images/western-union.svg" %}" alt="..."></li>
+                        <li class="list-inline-item"><a class="text-light small-text" href="{% url 'faq' %}">Nous contacter</a></li>
                     </ul>
                 </div>
             </div>

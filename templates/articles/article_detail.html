@@ -4,6 +4,7 @@
 
 {% block content %}
 
+{% include 'partials/alerts.html' %}
 
 <section class="py-6">
     <div class="container-fluid">
@@ -45,6 +46,17 @@
                                 Envoyer un message
                             </a>
                             {% endif %}
+                        </div>
+                        <div class="text-center">
+                            <a>
+                                {% if user.is_authenticated %}
+                                <div class="save-result" id="#}"></div>
+                                <form method="POST" action="{% url 'favorite-add' product_id=article.id %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-warning btn-xl mt-50" type="submit" id="{{ article.id }}"><i class="fa fa-heart"></i> Ajouter aux favoris</button>
+                                </form>
+                                {% endif %}
+                            </a>
                         </div>
                     </div>
                     <h2 class="h6 my-3">Desciption</h2>

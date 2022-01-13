@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'partials/alerts.html' %}
+<section class="hero-home">
+    <div class="swiper swiper-fade swiper-initialized swiper-horizontal swiper-pointer-events hero-slider">
+        <div class="swiper-wrapper" style="transition-duration: 2000ms;">
+            <div class="swiper-slide swiper-slide-visible swiper-slide-active" style="width: 1265px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 2000ms;"><span style="box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0">
+                <img alt="Hero image" sizes="100vw" src="https://i.etsystatic.com/25628084/r/il/285cd2/2728421207/il_1588xN.2728421207_stka.jpg" data-nimg="fill" class="bg-image" style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%" />
+        </span>
+    </div>
+    </div>
+    </div>
+    <div class="py-6 py-md-7 text-white z-index-20 container">
+        <div class="row">
+            <div class="col-xl-10">
+                <div class="text-center text-lg-start">
+                    <p class="subtitle letter-spacing-4 mb-2 text-secondary text-shadow">The best holiday experience</p><h1 class="display-3 fw-bold text-shadow">Stay like a local</h1></div><div class="search-bar mt-5 p-3 p-lg-1 ps-lg-4"><form action="#" class=""><div class="row"><div class="d-flex align-items-center form-group col-lg-4"><input type="text" name="search" placeholder="What are you searching for?" class="border-0 shadow-0 form-control"></div><div class="d-flex align-items-center form-group col-lg-3 col-md-12"><div class="input-label-absolute input-label-absolute-right w-100"><label class="label-absolute form-label" for="location"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="crosshairs" class="svg-inline--fa fa-crosshairs fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500 224h-30.364C455.724 130.325 381.675 56.276 288 42.364V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v30.364C130.325 56.276 56.276 130.325 42.364 224H12c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h30.364C56.276 381.675 130.325 455.724 224 469.636V500c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-30.364C381.675 455.724 455.724 381.675 469.636 288H500c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12zM288 404.634V364c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40.634C165.826 392.232 119.783 346.243 107.366 288H148c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-40.634C119.768 165.826 165.757 119.783 224 107.366V148c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-40.634C346.174 119.768 392.217 165.757 404.634 224H364c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40.634C392.232 346.174 346.243 392.217 288 404.634zM288 256c0 17.673-14.327 32-32 32s-32-14.327-32-32c0-17.673 14.327-32 32-32s32 14.327 32 32z"></path></svg><span class="sr-only">City</span></label><input type="text" name="location" placeholder="Location" id="location" class="border-0 shadow-0 form-control"></div></div><div class="d-flex align-items-center form-group no-divider col-lg-3"><div class="selectpicker w-100 css-2b097c-container" id="select-index-1-searchbar"><div class="selectpicker__control css-da3wf8-control"><div class="selectpicker__value-container css-1hwfws3"><div class="selectpicker__placeholder css-1wa3eu0-placeholder">Categories</div><div class="css-1g6gooi"><div class="selectpicker__input" style="display:inline-block"><input type="text" autocapitalize="none" autocomplete="off" autocorrect="off" id="react-select-select-index-1-searchbar-input" spellcheck="false" tabindex="0" value="" aria-autocomplete="list" aria-label="Categories" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;"><div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 12.8px; font-family: Poppins, sans-serif; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div></div></div></div><div class="selectpicker__indicators css-1wy0on6"><span class="selectpicker__indicator-separator css-1hyfx7x"></span><div aria-hidden="true" class="selectpicker__indicator selectpicker__dropdown-indicator css-tlfecz-indicatorContainer"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></div></div></div></div></div><div class="d-grid  col-lg-2"><button type="submit" class="h-100 rounded-pill btn btn-primary">Search</button></div></div></form></div></div></div></div>
+</section>
+
+<section class="py-6">
+    <div class="container pages">
+        <div class="row justify-content-center">
+           <div class="col-lg-8">
+               <h1 class="mb-5 h3 text-uppercase border-bottom pb-2">Conditions générales d'utilisation</h1>
+                <p>En cours</p>
+           </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
