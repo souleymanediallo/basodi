@@ -20,7 +20,11 @@
                             {% endfor %}
                             <button class="btn btn-lg btn-block btn-dark" type="submit">Inscription</button>
                             <hr class="my-4">
-                            <p class="text-center"><small class="text-muted text-center">Vous avez déjà un compte ? <a href="login.html" class="text-dark">Connexion</a></small></p>
+                            <p class="text-center">
+                                <small class="text-muted text-center">Vous avez déjà un compte ?
+                                    <a href="{% url 'login' %}" class="text-dark">Connexion</a>
+                                </small>
+                            </p>
                         </form>
                     </div>
                 </div>
