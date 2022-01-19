@@ -30,3 +30,7 @@
 .bg-dark {
     background-color: #000000;
 }
+
+.text-dark-b {
+    color: #000!important;
+}
