@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 from .models import Article, Category, SubCategory
 from .forms import ArticleForm
@@ -14,6 +15,7 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = "articles"
     template_name = "articles/article_list.html"
+    paginate_by = 4
 
 
 class ArticleDetailView(DetailView):
