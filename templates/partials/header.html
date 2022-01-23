@@ -2,6 +2,7 @@
 <header class="header">
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg fixed-top shadow top-menu">
+
         <div class="container-fluid">
             <div class="d-flex align-items-center">
                 <a class="navbar-brand py-1 font-weight-bold text-uppercase text-light" href="{% url 'home' %}">BASODI</span></a>
@@ -26,11 +27,13 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Megamenu-->
                     <!-- /Megamenu end-->
-                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'article-list' %}">Tous les articles</a></li>
-                    {% categories as categories %}
-                    {% for cat in categories %}
-                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'category-detail' pk=cat.id slug=cat.slug %}">{{ cat.name }}</a></li>
-                    {% endfor %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'article-list' %}">Tous les articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'article-create' %}">Vendre</a>
+                    </li>
+
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown ml-lg-3"><a id="userDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ user.profile.image.url }}" alt="Profile Photo"></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenuLink">
