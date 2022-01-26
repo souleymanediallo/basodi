@@ -9,17 +9,28 @@
     <div class="container py-lg-5 text-white overlay-content text-center">
         <div class="row">
             <div class="col-xl-10 mx-auto">
+                {% categories as categories %}
+                {% if categories %}
+                <ul class="nav justify-content-center mb-4">
+                    {% for cat in categories %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark-b" href="{% url 'category-detail' pk=cat.id slug=cat.slug %}">{{ cat.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <h1 class="display-3 font-weight-bold text-shadow text-dark-b">Acheter, Vendre, Echanger ou Donner</h1>
                 <p class="text-lg text-shadow text-dark-b">Vêtements, Chaussures et Accessoires Africains.</p>
-                <form>
+                <form method="get" action="{% url 'article-search' %}">
                     <div class="input-label-absolute input-label-absolute-left input-reset w-100">
                         <label class="label-absolute" for="searchcollapsed_search">
                             <i class="fa fa-search"></i><span class="sr-only">Que recherchez vous ?</span></label>
-                        <input type="text" placeholder="Rechercher des articles : Grand boubou, Taille mame, tenue afraicaine"
+                        <input type="search" name="q" placeholder="Rechercher des articles : Grand boubou, Taille mame, tenue afraicaine"
                                class="form-control form-control-sm border-2 shadow-0 py-4">
                         <button class="btn btn-reset btn-sm" type="reset"><i class="fa-times fas"></i></button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -174,8 +185,8 @@
         <div class="row justify-content-center mt-3">
             <div class="col-lg-6">
                 <div class="text-center">
-                    <a href="{% url 'article-create' %}" class="btn btn-dark bg-dark-b">
-                        Vendre dès maintenant<i class="fas fa-chevron-right"></i>
+                    <a href="{% url 'article-create' %}" class="btn btn-dark btn-lg bg-dark-b">
+                        Vendre dès maintenant <i class="fas fa-chevron-right"></i>
                     </a>
                 </div>
             </div>
@@ -244,14 +255,15 @@
         <div class="row justify-content-center mt-3">
             <div class="col-lg-6">
                 <div class="text-center">
-                    <a href="{% url 'article-list' %}" class="btn btn-dark bg-dark-b">
-                        Acheter rapidement <i class="fas fa-chevron-right"></i>
+                    <a href="{% url 'article-list' %}" class="btn btn-dark btn-lg bg-dark-b">
+                        Acheter Rapidement <i class="fas fa-chevron-right"></i>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </section>
+
 
 {% endblock %}

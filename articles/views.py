@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -105,8 +106,26 @@ class SubCategoryDetail(ListView):
         return context
 
 
+class ArticleSearchView(ListView):
+    model = Article
+    template_name = "articles/search.html"
+    context_object_name = "articles"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Article.objects.filter(
+                Q(name__icontains=query) |
+                Q(description__icontains=query) |
+                Q(tag__name__icontains=query)
+            )
+        return Article.objects.all()
+
+
 @login_required
 def articles_user(request):
     articles = Article.objects.filter(author=request.user)
     context = {"articles": articles}
     return render(request, "articles/article_user.html", context)
+
+
