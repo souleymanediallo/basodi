@@ -3,14 +3,17 @@
 {% load custom_tags %}
 
 {% block content %}
+
+<!-- search -->
+{% include 'partials/top_search.html' %}
+<!-- end search -->
+
+
 <section class="py-5">
     <!-- categories -->
     <div class="container">
        <div class="row">
-           <div class="col-lg-3">
-               {% include 'partials/sidebar.html' %}
-           </div>
-           <div class="col-lg-9">
+           <div class="col-lg-12">
                <div class="row">
                    <!-- venue item-->
                    {% for article in articles %}
@@ -48,5 +51,7 @@
     </div>
     <!-- end categories -->
 </section>
+
+{% include 'partials/sub_category.html' %}
 
 {% endblock %}

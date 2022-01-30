@@ -1,0 +1,23 @@
+{% load custom_tags %}
+
+<section class="pb-5">
+    <div class="container">
+        <h2 class="my-5">Rechercher par catégorie</h2>
+        <div class="row">
+            {% subcategories as subcategories %}
+            {% for subcat in subcategories %}
+            {% if subcat %}
+            <div class="col-sm-4 col-md-3 col-lg-2">
+                <ul class="list-inline">
+                    <li class="list-inline-item mb-2">
+                        <a href="{% url 'subcategory-detail' pk=subcat.pk slug=subcat.slug %}" class="badge-gb">
+                            <span class="badge badge-b rounded-3">{{ subcat.name }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

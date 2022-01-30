@@ -130,6 +130,7 @@ class Article(models.Model):
     photo_4 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     photo_5 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     photo_6 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
+    change = models.BooleanField(default=False)
     give = models.BooleanField(default=False)
     published = models.BooleanField(default=True)
     premium = models.BooleanField(default=False)

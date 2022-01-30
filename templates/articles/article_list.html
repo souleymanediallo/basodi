@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
+{% load custom_tags %}
+
 {% block content %}
-<section class="py-5">
+
+{% include 'partials/top_search.html' %}
+
+<section class="pb-3">
     <!-- categories -->
     <div class="container">
         <div class="row">

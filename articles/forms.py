@@ -7,7 +7,7 @@ class ArticleForm(forms.ModelForm):
         TITLE_CHOICES = "TITLE_CHOICES"
         model = Article
         fields = ["category", "subcategory", "name", "description", "price", "condition", "tag", "color", "size",
-                  "give", "photo_main", "photo_1", "photo_2", "photo_3", "photo_4", "photo_5", "photo_6"]
+                  "change", "give", "photo_main", "photo_1", "photo_2", "photo_3", "photo_4", "photo_5", "photo_6"]
 
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Name'}),
