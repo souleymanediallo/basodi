@@ -1,40 +1,80 @@
 {% extends "base.html" %}
-
+{% load humanize %}
 {% load custom_tags %}
 
 
 {% block content %}
 <!-- search -->
 {% include 'partials/top_search.html' %}
-<!-- end search -->
-<section class="pb-5">
-    <!-- categories -->
+<!-- product -->
+<section class="py-4">
     <div class="container">
-       <div class="row">
-           <div class="col-lg-12">
-               <div class="row">
-                   <!-- venue item-->
-                   {% for article in articles %}
-                   <div class="col-md-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
-                       <div class="card h-100 border-0 shadow">
-                           <div class="card-img-top overflow-hidden dark-overlay bg-cover"
-                                style="background-image: url('{{ article.photo_main.url }}'); min-height: 350px;">
-                               <a class="tile-link" href="{{ article.get_absolute_url }}"></a>
-                           </div>
-                           <div class="card-body">
-                               <div class="d-flex justify-content-between">
-                                   <p class="text-sm text-muted text-uppercase mb-1">{{ article.price }} FCFA</p>
-                                   <p class="text-sm text-muted text-uppercase mb-1"> L/34</p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   {% endfor %}
-               </div>
-           </div>
-       </div>
+        <div class="text-center pb-lg-4">
+            <h2 class="mb-5 text-uppercase">Les Nouveaux Articles</h2>
+        </div>
+        <div class="row">
+            <!-- venue item-->
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-3 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
+                <div class="card h-100 border-0 rounded-0 shadow">
+                    <a href="{{ article.get_absolute_url }}">
+                        <img class="card-img-top rounded-0" src="{{ article.photo_main.url }}" style="height: 350px;"/>
+                    </a>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-sm text-uppercase mb-0">
+                                <strong>{{ article.price|intcomma }} FCFA</strong>
+                            </p>
+                            <p class="text-sm text-muted text-uppercase mb-0"> {{ article.size }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- pagination -->
+        {% if is_paginated %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-template d-flex justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> <i class="fa fa-angle-left"></i></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                        </li>
+                        {% endif %}
+
+                        {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{i}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"> <i class="fa fa-angle-right"></i></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        <!-- end pagination -->
     </div>
-    <!-- end categories -->
 </section>
+<!-- end products -->
+
 {% include 'partials/sub_category.html' %}
 {% endblock %}

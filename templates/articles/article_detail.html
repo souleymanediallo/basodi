@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-
+{% load humanize %}
 {% load static %}
 
 {% block content %}
 
 
-<section class="py-6">
-    <div class="container-fluid">
+<section class="py-5">
+    <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <!-- start slider -->
-                <section class="mx-n4 mx-xl-n5 mb-4 mb-xl-5">
+                <section class="mb-3">
                     <!-- Slider main container-->
                     <div class="swiper-container booking-detail-slider">
                         <!-- Additional required wrapper-->
@@ -31,133 +31,96 @@
                 <!-- end slider -->
 
                 <!-- About Listing-->
-                <div class="text-block">
-                    <div class="d-flex justify-content-between">
-                        <h2 class="h6 mb-3">{{ article.name}}</h2>
-                        <div class="text-center">
-                            {% if not user.is_authenticated %}
-                            <a href="{% url 'login' %}" class="btn btn-dark">
-                                Envoyer un message
-                            </a>
-                            {% endif %}
-                            {% if request.user.profile.id != profile.id %}
-                            <a href="{% url 'conversation-create' article.author.profile.pk %}" class="btn btn-dark">
-                                Envoyer un message
-                            </a>
-                            {% endif %}
-                        </div>
-                        <div class="text-center">
-                            <a>
-                                {% if user.is_authenticated %}
-                                <div class="save-result" id="#}"></div>
-                                <form method="POST" action="{% url 'favorite-add' product_id=article.id %}">
-                                    {% csrf_token %}
-                                    <button class="btn btn-warning btn-xl mt-50" type="submit" id="{{ article.id }}"><i class="fa fa-heart"></i> Ajouter aux favoris</button>
-                                </form>
-                                {% endif %}
-                            </a>
-                        </div>
-                    </div>
+                <div class="card card-body rounded-0 mb-md-3">
+                    <h2 class="h6 mb-3">{{ article.name }}</h2>
                     <h2 class="h6 my-3">Desciption</h2>
-                    <p class="text-muted">{{ article.description}}</p>
+                    <p class="text-muted">{{ article.description }}</p>
                 </div>
-
-                <!-- Amenities-->
-                <div class="text-block">
-                    <h3 class="mb-4">Article similaire</h3>
-                    <div class="row">
-                        <!-- venue item-->
-                        {% for article in article_similar %}
-                        <div class="col-md-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
-                            <div class="card h-100 border-0 shadow">
-                                <div class="card-img-top overflow-hidden dark-overlay bg-cover" style="background-image: url('{{ article.photo_main.url }}'); min-height: 350px;"><a class="tile-link" href="{{ article.get_absolute_url }}"></a>
-                                    <div class="card-img-overlay-bottom z-index-20">
-                                        <h4 class="text-white text-shadow">{{ article.name }}</h4>
-                                        <p class="mb-2 text-xs"><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-gray-300">                    </i>
-                                        </p>
-                                    </div>
-                                    <div class="card-img-overlay-top d-flex justify-content-between align-items-center">
-                                        <div class="badge badge-transparent badge-pill px-3 py-2">{{ article.category }}</div><a class="card-fav-icon position-relative z-index-40" href="javascript: void();">
-                                        <svg class="svg-icon text-white">
-                                            <use xlink:href="#heart-1"> </use>
-                                        </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="text-sm text-muted text-uppercase mb-1">{{ article.price }}FCFA</p>
-                                        <p class="text-sm text-muted text-uppercase mb-1"> L/34</p>
-                                    </div>
-                                    <div class="profile-img mb-0">
-                                        <img class="avatar avatar-sm avatar-border-white mr-2" src="{{ article.author.profile.image.url }}">
-                                        <small>{{ article.author.firstname }}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- Article similaire -->
-
 
                 <!-- end article -->
             </div>
             <div class="col-lg-4">
-                <div class="pl-xl-4">
-                    <!-- Opening Hours      -->
-                    <div class="card border-0 shadow mb-5">
+                <div class="mb-3">
+                    <!-- Fiche Product      -->
+                    <div class="card rounded-0 mb-4">
                         <div class="card-header bg-gray-100 py-4 border-0">
                             <div class="media align-items-center">
                                 <div class="media-body">
-
                                     <h4 class="mb-0">Fiche Produit</h4>
                                 </div>
-
                             </div>
                         </div>
                         <div class="card-body">
                             <table class="table text-sm mb-0">
                                 <tr>
-                                    <th class="pl-0 border-0">Prix</th>
-                                    <td class="pr-0 text-right border-0">{{article.price}} FCFA</td>
+                                    <th class="pl-0 th-b border-0 py-1">Prix</th>
+                                    <td class="pr-0 text-right border-0 py-1">{{article.price}} FCFA</td>
                                 </tr>
                                 <tr>
-                                    <th class="pl-0">Taille</th>
-                                    <td class="pr-0 text-right">{{article.size}}</td>
+                                    <th class="pl-0 py-2">Taille</th>
+                                    <td class="pr-0 text-right py-2">{{article.size}}</td>
                                 </tr>
                                 <tr>
-                                    <th class="pl-0">Couleur</th>
-                                    <td class="pr-0 text-right">{{ article.color }}</td>
+                                    <th class="pl-0 py-2">Couleur</th>
+                                    <td class="pr-0 text-right py-2">{{ article.color }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="pl-0">Etat</th>
-                                    <td class="pr-0 text-right">{{ article.condition }}</td>
+                                    <th class="pl-0 py-2">Etat</th>
+                                    <td class="pr-0 text-right py-2">{{ article.condition }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="pl-0">Emplacement</th>
-                                    <td class="pr-0 text-right">{{ article.author.profile.location}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="pl-0">Date de publication</th>
-                                    <td class="pr-0 text-right">{{ article.created|date}}</td>
+                                    <th class="pl-0 py-2">Publication</th>
+                                    <td class="pr-0 text-right py-2">{{ article.created|date}}</td>
                                 </tr>
                                 {% if article.author.profile.phone %}
                                 <tr>
-                                    <th class="pl-0">Téléphone</th>
-                                    <td class="pr-0 text-right">{{ article.author.profile.phone }}</td>
+                                    <th class="pl-0 py-2">Téléphone</th>
+                                    <td class="pr-0 text-right py-2">{{ article.author.profile.phone }}</td>
                                 </tr>
                                 {% endif %}
-                                <tr>
-                                    <th class="pl-0"><a href="{% url 'user-profile' article.author.profile.id %}">{{ article.author.firstname }}</a></th>
-                                    <td class="pr-0 text-right"><img src="{{ article.author.profile.image.url }}" height="30" width="30"></td>
-                                </tr>
                             </table>
+                            <hr class="m-0 pb-3">
+                            <div class="text-center">
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}" class="btn btn-dark btn-block mb-3">
+                                    Envoyer un message
+                                </a>
+                                {% endif %}
+                                {% if request.user.profile.id != profile.id %}
+                                <a href="{% url 'conversation-create' article.author.profile.pk %}" class="btn btn-block mb-3 btn-outline-dark">
+                                    Envoyer un message
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="text-center">
+                                {% if user.is_authenticated %}
+                                <a>
+                                    <div class="save-result" id="#"></div>
+                                    <form method="POST" action="{% url 'favorite-add' product_id=article.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-dark btn-block" type="submit" id="{{ article.id }}">
+                                            <i class="fa fa-heart"></i> Ajouter aux favoris</button>
+                                    </form>
+                                </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                    <!-- Contact-->
+                    <!-- End Fiche Product -->
 
 
+                </div>
+                <div class="card card-body rounded-0">
+                    <table class="table text-sm mb-0">
+                        <tr>
+                            <th class="pl-0 border-0 py-2"><a href="{% url 'user-profile' article.author.profile.id %}">{{ article.author.firstname }}</a></th>
+                            <td class="pr-0 text-right border-0 py-2"><img src="{{ article.author.profile.image.url }}" height="30" width="30"></td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 th-b py-2">Ville</th>
+                            <td class="pr-0 text-right py-2">{{ article.author.profile.location}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -165,6 +128,75 @@
 </section>
 
 
+<!-- product -->
+<section class="py-4">
+    <div class="container">
+        <div class="text-center pb-lg-4">
+            <h2 class="mb-5 text-uppercase">Les Nouveaux Articles</h2>
+        </div>
+        <div class="row">
+            <!-- venue item-->
+            {% for article in article_similar %}
+            <div class="col-md-6 col-lg-3 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
+                <div class="card h-100 border-0 rounded-0 shadow">
+                    <a href="{{ article.get_absolute_url }}">
+                        <img class="card-img-top rounded-0" src="{{ article.photo_main.url }}" style="height: 350px;"/>
+                    </a>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-sm text-uppercase mb-0">
+                                <strong>{{ article.price|intcomma }} FCFA</strong>
+                            </p>
+                            <p class="text-sm text-muted text-uppercase mb-0"> {{ article.size }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- pagination -->
+        {% if is_paginated %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-template d-flex justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> <i class="fa fa-angle-left"></i></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                        </li>
+                        {% endif %}
+
+                        {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{i}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"> <i class="fa fa-angle-right"></i></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        <!-- end pagination -->
+    </div>
+</section>
+<!-- end products -->
 
 
 
