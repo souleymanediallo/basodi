@@ -78,12 +78,12 @@ class CategoryDetail(ListView):
     template_name = "categories/category_detail.html"
 
     def get_queryset(self):
-        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
         return Article.objects.filter(category=self.category)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
         context['categories'] = Category.objects.all()
         context['category'] = self.category
         return context
@@ -95,12 +95,12 @@ class SubCategoryDetail(ListView):
     template_name = "categories/subcategory_detail.html"
 
     def get_queryset(self):
-        self.subcategory = get_object_or_404(SubCategory, pk=self.kwargs['pk'])
+        self.subcategory = get_object_or_404(SubCategory, slug=self.kwargs['slug'])
         return Article.objects.filter(subcategory=self.subcategory)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        self.subcategory = get_object_or_404(SubCategory, pk=self.kwargs['pk'])
+        self.subcategory = get_object_or_404(SubCategory, slug=self.kwargs['slug'])
         context['subcategories'] = SubCategory.objects.all()
         context['subcategory'] = self.subcategory
         return context
