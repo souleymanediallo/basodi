@@ -9,7 +9,8 @@ class HomeView(ListView):
     model = Article
     template_name = "pages/index.html"
     context_object_name = "articles"
-    paginate_by = 4
+    paginate_by = 12
+    ordering = ["-created"]
 
 
 class UtilisationView(TemplateView):
