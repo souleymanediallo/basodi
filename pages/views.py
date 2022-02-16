@@ -43,3 +43,7 @@ class CguView(TemplateView):
 
 class FaqView(TemplateView):
     template_name = "pages/foire-aux-questions.html"
+
+
+def contact(request):
+    return render(request, "pages/contact.html")
