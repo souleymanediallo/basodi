@@ -130,3 +130,6 @@ def articles_user(request):
     return render(request, "articles/article_user.html", context)
 
 
+# https://stackoverflow.com/questions/68634934/how-to-display-products-from-subcategories-in-parent-categories-in-django
+
+# todo : add city and country to article

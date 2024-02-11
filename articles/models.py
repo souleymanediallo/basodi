@@ -57,9 +57,26 @@ class Size(models.Model):
         return self.name
 
 
+class MainCategory(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(editable=False)
+    image = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    ordering = models.IntegerField(default=0)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(MainCategory, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(editable=False)
+    main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='categories')
     image = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     ordering = models.IntegerField(default=0)
@@ -76,6 +93,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(editable=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
     image = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     ordering = models.IntegerField(default=0)
@@ -110,20 +128,17 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name="articles",
-                                 default="a68d46c1-4f68-4646-ba66-0081204e17a0")
+    main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='main_category')
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name="articles")
     subcategory = models.ForeignKey(SubCategory, related_name="articles",
-                                    on_delete=models.DO_NOTHING, blank=True, null=True,
-                                    default="45f33c1c-4e69-483d-bdc8-7337327c441b")
+                                    on_delete=models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=400)
     price = models.PositiveIntegerField()
     condition = models.ForeignKey(Condition, on_delete=models.DO_NOTHING, related_name="articles")
     tag = models.ManyToManyField(Tag, related_name="articles", blank=True)
-    color = models.ForeignKey(Color, on_delete=models.DO_NOTHING, related_name="articles", blank=True,
-                              default='69bfb95a-6732-4047-9553-b20b530a86b4')
-    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True,
-                             default='9d95b2a1-de4f-478f-9037-eb4f6058dfb1')
+    color = models.ForeignKey(Color, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
+    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)

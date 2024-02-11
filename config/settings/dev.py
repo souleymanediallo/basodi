@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'articles.apps.ArticlesConfig',
     'conversations.apps.ConversationsConfig',
     'favorite.apps.FavoriteConfig',
-
     'crispy_forms',
 ]
 
@@ -80,7 +79,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///basodi")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
-
+# dropdb basodi
+# createdb basodi
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
