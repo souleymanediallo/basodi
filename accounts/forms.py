@@ -9,12 +9,11 @@ from .models import CustomUser, Profile
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ["user_choices", "firstname", "email", "password1", "password2", "city"]
+        fields = ["firstname", "email", "zip_code", "password1", "password2",]
         labels = {
-            "user_choices": "Type de compte",
             "firstname": "Prénom",
             "email": "Adresse Email",
-            "city": "Votre Ville",
+            "zip_code": "Code postal",
         }
 
     def __init__(self, *args, **kwargs):
@@ -23,12 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
 
-        self.fields['user_choices'].widget.attrs.update({'class': 'form-control custom-select'})
-        self.fields['city'].widget = TextInput(attrs={
-            'id': 'auto_check',
-            'class': 'form-control',
-            'placeholder': 'Ville'
-        })
+
 
 
 class UserUpdateForm(forms.ModelForm):
