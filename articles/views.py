@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -6,8 +7,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
-
-from .models import Article, Category, SubCategory
+from django.http import JsonResponse
+from .models import Article, Category, SubCategory, MainCategory
 from .forms import ArticleForm
 
 
@@ -132,4 +133,15 @@ def articles_user(request):
 
 # https://stackoverflow.com/questions/68634934/how-to-display-products-from-subcategories-in-parent-categories-in-django
 
-# todo : add city and country to article
+def get_categories_for_gender(request, gender_name):
+    categories = list(MainCategory.objects.get(name=gender_name).categories.values('id', 'name'))
+    print(categories)
+    return JsonResponse(categories, safe=False)
+
+
+def get_subcategories_for_category(request, category_id):
+    subcategories = list(Category.objects.get(id=category_id).subcategories.values('id', 'name'))
+    print(subcategories)
+    return JsonResponse(subcategories, safe=False)
+
+

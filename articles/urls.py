@@ -11,4 +11,9 @@ urlpatterns = [
     path('category/<slug:slug>', views.CategoryDetail.as_view(), name="category-detail"),
     path('subcategory/<slug:slug>', views.SubCategoryDetail.as_view(), name="subcategory-detail"),
     path('search/', views.ArticleSearchView.as_view(), name="article-search"),
+    path('api/get-categories-for-gender/<str:gender_name>/', views.get_categories_for_gender,
+         name='get_categories_for_gender'),
+    path('api/get-subcategories-for-category/<str:category_id>/', views.get_subcategories_for_category,
+         name='get_subcategories_for_category'),
+    # path('get-subcategories-for-gender/', views.get_subcategories_for_gender, name='get-subcategories-for-gender'),
 ]

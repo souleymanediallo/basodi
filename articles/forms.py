@@ -6,7 +6,7 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         TITLE_CHOICES = "TITLE_CHOICES"
         model = Article
-        fields = ["category", "subcategory", "name", "description", "price", "condition", "tag", "color", "size",
+        fields = ["main_category", "category", "subcategory", "name", "description", "price", "condition", "tag", "color", "size",
                   "change", "give", "photo_main", "photo_1", "photo_2", "photo_3", "photo_4", "photo_5", "photo_6"]
 
         widgets = {
@@ -28,4 +28,8 @@ class ArticleForm(forms.ModelForm):
             self.fields['photo_5'].widget.attrs.update({'class': 'custom-file-upload'})
             self.fields['photo_6'].widget.attrs.update({'class': 'custom-file-upload'})
             self.fields['tag'].widget.attrs.update({'class': 'form-check-input-c'})
+
+        self.fields['main_category'].widget.attrs.update({'id': 'main_category_select'})
+        self.fields['category'].widget.attrs.update({'id': 'sub_category_select'})
+        self.fields['subcategory'].widget.attrs.update({'id': 'third_sub_category_select'})
 

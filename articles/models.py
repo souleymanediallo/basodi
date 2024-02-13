@@ -56,6 +56,22 @@ class Size(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(editable=False)
+    ordering = models.IntegerField(default=0)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    class Meta:
+        ordering = ["-ordering"]
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Tag, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
 
 class MainCategory(models.Model):
     name = models.CharField(max_length=200)
@@ -109,22 +125,10 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+    # permettre l'admin de choisir la catégorie parent en distanguant la catégorie parent
 
-class Tag(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(editable=False)
-    ordering = models.IntegerField(default=0)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
-    class Meta:
-        ordering = ["-ordering"]
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Tag, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
 
 
 class Article(models.Model):
@@ -174,4 +178,4 @@ class Article(models.Model):
         return reverse("article-update", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.category.MainCategory.name} - {self.category.name} - {self.subcategory.name if self.subcategory else ''}"
