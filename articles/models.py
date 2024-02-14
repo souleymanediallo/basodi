@@ -13,7 +13,7 @@ class Condition(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     class Meta:
-        ordering = ["-ordering"]
+        ordering = ["ordering"]
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
