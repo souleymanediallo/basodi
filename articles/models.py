@@ -41,13 +41,22 @@ class Color(models.Model):
 
 
 class Size(models.Model):
+    TYPE_CHOICES = (
+        ('Vêtements-Femmes', 'Vêtements-Femmes'),
+        ('Vêtements-Hommes', 'Vêtements-Hommes'),
+        ('Vêtements-Enfants', 'Vêtements-Enfants'),
+        ('Chaussures-Femmes', 'Chaussures-Femmes'),
+        ('Chaussures-Hommes', 'Chaussures-Hommes'),
+        ('Chaussures-Enfants', 'Chaussures-Enfants'),
+    )
+    type_choice = models.CharField(max_length=200, choices=TYPE_CHOICES, default='Vêtements-Femmes')
     name = models.CharField(max_length=200)
     slug = models.SlugField(editable=False)
     ordering = models.IntegerField(default=0)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     class Meta:
-        ordering = ["-ordering"]
+        ordering = ["type_choice"]
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -142,7 +151,7 @@ class Article(models.Model):
     condition = models.ForeignKey(Condition, on_delete=models.DO_NOTHING, related_name="articles")
     tag = models.ManyToManyField(Tag, related_name="articles", blank=True)
     color = models.ForeignKey(Color, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
-    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True)
+    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, related_name="articles", blank=True, null=True)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/', blank=True, null=True)

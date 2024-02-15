@@ -3,13 +3,18 @@ from .models import Color, Condition, Category, Article, SubCategory, Size, Tag,
 
 
 # Register your models here.
-@admin.register(Article)
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['ordering', 'name', 'category', 'subcategory', 'price', 'color', 'condition']
+    list_display_links = ['name']
+    list_editable = ['ordering', 'category', 'subcategory', 'price', 'color', 'condition']
 
+
+admin.site.register(Article, ArticleAdmin)
 
 class MainCategoryAdmin(admin.ModelAdmin):
     list_display = ['ordering', 'name']
+    list_display_links = ['name', 'ordering']
 
 admin.site.register(MainCategory, MainCategoryAdmin)
 
@@ -26,25 +31,30 @@ class CategoryAdmin(admin.ModelAdmin):
 
     # choisir catrgorie parent
 
-
-
-
-
 admin.site.register(Category, CategoryAdmin)
 
-@admin.register(Color)
+
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ordering', 'name']
+    list_display = ['ordering', 'name']
+    list_display_links = ['name']
+    list_editable = ['ordering']
+
+admin.site.register(Color, ColorAdmin)
 
 
-@admin.register(Condition)
+
 class ConditionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ordering', 'name']
+    list_display = ['ordering', 'name']
+    list_display_links = ['name']
+    list_editable = ['ordering']
 
+admin.site.register(Condition, ConditionAdmin)
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ordering', 'name', 'category']
+    list_display = ['ordering', 'name', 'category']
+    list_display_links = ['name']
+    list_editable = ['ordering']
 
     # choisir catrgorie parent
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -53,11 +63,18 @@ class SubCategoryAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-@admin.register(Size)
+
 class SizeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ordering', 'name']
+    list_display = ['ordering', 'name', 'type_choice']
+    list_display_links = ['name']
+    list_editable = [ 'ordering']
+
+admin.site.register(Size, SizeAdmin)
 
 
-@admin.register(Tag)
+
 class TagAdmin(admin.ModelAdmin):
     list_display = ['id', 'ordering', 'name']
+    list_editable = ['ordering']
+
+admin.site.register(Tag, TagAdmin)
