@@ -28,4 +28,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
     });
+
+    // size select
+    document.getElementById('sub_category_select').addEventListener('change', function() {
+    var subCategory = this.value;
+    console.log("SubCategory selected:", subCategory); // Débogage
+
+    fetch(`/api/get-sizes/${subCategory}/`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(sizes => {
+            console.log("Sizes received:", sizes); // Débogage
+            var sizeSelect = document.getElementById('size_select');
+            sizeSelect.innerHTML = ''; // Vider les options existantes
+            sizes.forEach(function(size) {
+                var option = new Option(size.name, size.id);
+                sizeSelect.add(option);
+            });
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+});
+
+
 });

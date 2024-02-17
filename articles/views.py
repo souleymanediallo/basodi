@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from .models import Article, Category, SubCategory, MainCategory
+from .models import Article, Category, SubCategory, MainCategory, Size
 from .forms import ArticleForm
 
 
@@ -144,4 +144,7 @@ def get_subcategories_for_category(request, category_id):
     print(subcategories)
     return JsonResponse(subcategories, safe=False)
 
-
+def get_sizes(request, type_choice):
+    sizes = Size.objects.filter(type_choice=type_choice).order_by('ordering').values('id', 'name')
+    print(sizes)
+    return JsonResponse(list(sizes), safe=False)

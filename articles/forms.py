@@ -19,17 +19,25 @@ class ArticleForm(forms.ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
-            self.fields['size'].widget.attrs.update({'placeholder': 'Pas de Taille'})
-            self.fields['photo_main'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_1'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_2'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_3'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_4'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_5'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['photo_6'].widget.attrs.update({'class': 'custom-file-upload'})
-            self.fields['tag'].widget.attrs.update({'class': 'form-check-input-c'})
 
+            # Mettre à jour les attributs spécifiques pour le champ size en dehors de la boucle.
+        self.fields['size'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'size_select',
+            'placeholder': 'Pas de Taille'
+        })
+
+        # Mettre à jour les attributs pour les champs de téléchargement de photos.
+        photo_fields = ['photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6']
+        for photo_field in photo_fields:
+            self.fields[photo_field].widget.attrs.update({'class': 'custom-file-upload'})
+
+        # Mettre à jour les attributs pour les sélecteurs de catégories.
         self.fields['main_category'].widget.attrs.update({'id': 'main_category_select'})
         self.fields['category'].widget.attrs.update({'id': 'sub_category_select'})
         self.fields['subcategory'].widget.attrs.update({'id': 'third_sub_category_select'})
+
+        # Mettre à jour les attributs pour le champ tag.
+        self.fields['tag'].widget.attrs.update({'class': 'form-check-input-c'})
+
 
