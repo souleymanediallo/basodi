@@ -31,29 +31,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // size select
     document.getElementById('sub_category_select').addEventListener('change', function() {
-    var subCategory = this.value;
-    console.log("SubCategory selected:", subCategory); // Débogage
+    var subCategoryName = this.options[this.selectedIndex].text;
+    // Convertir le nom de la sous-catégorie en un type de taille attendu par l'API
+    var typeChoice = convertSubCategoryToTypeChoice(subCategoryName);
 
-    fetch(`/api/get-sizes/${subCategory}/`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
-            }
-            return response.json();
-        })
+    fetch(`/api/get-sizes/${typeChoice}/`)
+        .then(response => response.json())
         .then(sizes => {
-            console.log("Sizes received:", sizes); // Débogage
             var sizeSelect = document.getElementById('size_select');
             sizeSelect.innerHTML = ''; // Vider les options existantes
             sizes.forEach(function(size) {
                 var option = new Option(size.name, size.id);
-                sizeSelect.add(option);
+                sizeSelect.appendChild(option);
             });
         })
         .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
+            console.error('Error:', error);
         });
 });
+
+function convertSubCategoryToTypeChoice(subCategoryName) {
+    // Votre logique ici pour convertir le nom de la sous-catégorie en type de taille
+    // Par exemple, si subCategoryName est "Chaussures-Femmes", renvoyez cette chaîne.
+    return subCategoryName;
+}
+
 
 
 });
