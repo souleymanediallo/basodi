@@ -132,17 +132,15 @@ def articles_user(request):
 
 
 # https://stackoverflow.com/questions/68634934/how-to-display-products-from-subcategories-in-parent-categories-in-django
-
 def get_categories_for_gender(request, gender_name):
     categories = list(MainCategory.objects.get(name=gender_name).categories.values('id', 'name'))
-    print(categories)
     return JsonResponse(categories, safe=False)
 
 
 def get_subcategories_for_category(request, category_id):
     subcategories = list(Category.objects.get(id=category_id).subcategories.values('id', 'name'))
-    print(subcategories)
     return JsonResponse(subcategories, safe=False)
+
 
 def get_sizes(request, type_choice):
     sizes = Size.objects.filter(type_choice=type_choice).order_by('ordering').values('id', 'name')
