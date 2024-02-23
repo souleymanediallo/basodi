@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'articles.apps.ArticlesConfig',
     'conversations.apps.ConversationsConfig',
     'favorite.apps.FavoriteConfig',
+    'contact.apps.ContactConfig',
     'crispy_forms',
 ]
 
@@ -135,3 +136,11 @@ LOGOUT_REDIRECT_URL = "home"
 LOGIN_URL = "login"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# SMTP CONFIGURATIONS EMAIL BACKEND
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")

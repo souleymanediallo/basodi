@@ -11,5 +11,4 @@ urlpatterns = [
     path('nos-conseils', views.ConseilView.as_view(), name="conseils"),
     path('nos-engagements', views.EngagementView.as_view(), name="engagements"),
     path('foire-aux-question', views.FaqView.as_view(), name="faq"),
-    path('contact', views.contact, name="contact"),
 ]

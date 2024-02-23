@@ -16,6 +16,7 @@ urlpatterns = [
     path('articles/', include("articles.urls")),
     path('conversations/', include("conversations.urls")),
     path('favorite/', include("favorite.urls")),
+    path('contact/', include("contact.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
