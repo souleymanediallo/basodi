@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 import requests
+from phonenumber_field.modelfields import PhoneNumberField
 
 import uuid
 
@@ -63,7 +64,7 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     last_name = models.CharField(max_length=200, blank=True, null=True)
     image = models.ImageField(default="user.png", upload_to="photos/%Y/%m", blank=True, null=True)
-    phone = models.CharField(max_length=200, blank=True, null=True)
+    phone = PhoneNumberField(blank=True, null=True)
     description = models.TextField(max_length=300, blank=True, null=True)
     instagram = models.URLField(max_length=400, blank=True, null=True)
     facebook = models.URLField(max_length=400, blank=True, null=True)

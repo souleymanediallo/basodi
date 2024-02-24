@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'favorite.apps.FavoriteConfig',
     'contact.apps.ContactConfig',
     'crispy_forms',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

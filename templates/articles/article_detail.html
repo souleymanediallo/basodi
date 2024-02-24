@@ -4,8 +4,6 @@
 
 {% block content %}
 
-{% include 'partials/alerts.html' %}
-
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -55,7 +53,7 @@
                             <table class="table text-sm mb-0">
                                 <tr>
                                     <th class="pl-0 th-b border-0 py-1">Prix</th>
-                                    <td class="pr-0 text-right border-0 py-1">{{article.price}} FCFA</td>
+                                    <td class="pr-0 text-right border-0 py-1">{{article.price}} €</td>
                                 </tr>
                                 <tr>
                                     <th class="pl-0 py-2">Taille</th>
@@ -116,8 +114,12 @@
                             <td class="pr-0 text-right border-0 py-2"><img src="{{ article.author.profile.image.url }}" height="30" width="30"></td>
                         </tr>
                         <tr>
+                            <th class="pl-0 th-b py-2">Département</th>
+                            <td class="pr-0 text-right py-2">{{ article.author.address.department }}</td>
+                        </tr>
+                        <tr>
                             <th class="pl-0 th-b py-2">Ville</th>
-                            <td class="pr-0 text-right py-2">{{ article.author.profile.location}}</td>
+                            <td class="pr-0 text-right py-2">{{ article.author.address.city }}</td>
                         </tr>
                     </table>
                 </div>
