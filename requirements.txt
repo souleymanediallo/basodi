@@ -14,8 +14,10 @@ psycopg2-binary==2.9.5
 requests==2.31.0
 sqlparse==0.4.3
 urllib3==1.26.7
-s3transfer
+s3transfer==0.4.2
 boto3==1.17.60
 botocore==1.20.60
 whitenoise==5.3.0
 gunicorn==20.1.0
+django-storages[boto3]==1.14.2
+python-dateutil==2.8.2
