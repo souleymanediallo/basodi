@@ -3,6 +3,8 @@ from django.views.generic import TemplateView, ListView
 from articles.models import Article
 from django.core.paginator import Paginator
 
+from django.http import HttpResponse
+
 
 # Create your views here.
 class HomeView(ListView):
@@ -45,3 +47,11 @@ class FaqView(TemplateView):
     template_name = "pages/foire-aux-questions.html"
 
 
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Sitemap: https://basodi.com/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sitemaps',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'crispy_forms',
     'phonenumber_field',
+
 ]
 
 MIDDLEWARE = [
